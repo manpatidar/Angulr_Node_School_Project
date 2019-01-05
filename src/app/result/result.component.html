@@ -1,0 +1,141 @@
+<!-- <div>
+    <h2>Student Result</h2>
+    <form [formGroup]="resultForm" (ngSubmit)="onSubmit(resultForm.value)">
+        <label>Enter Roll number</label>
+        <input formControlName="roll" required/>
+        <button class="btn btn-info">Search</button><h6 *ngIf="!isValid && processStart"> Please enter correct roll number</h6>
+    </form>
+
+    <div *ngIf="isValid && processStart" id="printableTable">
+        <table id="table-prop">
+            <tr>
+                <td>
+                    <table>
+                        <tr>
+                            <td>
+                                <img src="assets/images/ssmmp.jpg" width=120 height=120>
+                            </td>
+                            <td>
+                                <b>
+                                    <font size='5'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;सरस्वती विद्या प्रतिष्ठान</font>
+                                </b>
+                                <br>
+                                <br>
+                                <font size='4' color='grey'>
+                                    <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;सरस्वती शिशु मन्दिर, कलालिया</b>
+                                </font>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <table>
+                        <tr>
+                            <td>
+                                <font size='4'>Roll number: &nbsp;&nbsp;&nbsp;{{rollnumber}}</font>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <font size='4'>Name:&nbsp;&nbsp;&nbsp;{{resultForm.get('fname').value}} {{resultForm.get('lname').value}}
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Father's Name:&nbsp;&nbsp;&nbsp;{{resultForm.get('faname').value}}
+                                </font>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <table>
+                        <tr>
+                            <th>
+                                <i>Subject code</i>
+                            </th>
+                            <th>
+                                <i>Subject name</i>
+                            </th>
+                            <th>
+                                <i>Min marks</i>
+                            </th>
+                            <th>
+                                <i>Max marks</i>
+                            </th>
+                            <th>
+                                <i>Marks obtained</i>
+                            </th>
+                            <th>
+                                <i>Remark</i>
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>101</td>
+                            <td>Hindi</td>
+                            <td>35</td>
+                            <td>100</td>
+                            <td>{{resultForm.get('hindi').value}}</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>102</td>
+                            <td>English</td>
+                            <td>18</td>
+                            <td>50</td>
+                            <td>{{resultForm.get('english').value}}</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>103</td>
+                            <td>Maths</td>
+                            <td>35</td>
+                            <td>100</td>
+                            <td>{{resultForm.get('maths').value}}</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>104</td>
+                            <td>Science</td>
+                            <td>35</td>
+                            <td>100</td>
+                            <td>{{resultForm.get('science').value}}</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>105</td>
+                            <td>Socail Science</td>
+                            <td>35</td>
+                            <td>100</td>
+                            <td>{{resultForm.get('ssc').value}}</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>106</td>
+                            <td>Sanskrit</td>
+                            <td>18</td>
+                            <td>50</td>
+                            <td>{{resultForm.get('sanskrit').value}}</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <b>Total</b>
+                            </td>
+                            <td>
+                                <b>500</b>
+                            </td>
+                            <td>
+                                <b>{{total}}</b>
+                            </td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <button *ngIf="isValid && processStart" class="btn btn-info1" (click)="printDiv()">Print</button>
+ -->

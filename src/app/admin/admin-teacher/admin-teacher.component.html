@@ -1,0 +1,137 @@
+<h2>
+  Teacher Details</h2>
+
+<div>
+  <form [formGroup]="teacherForm" (ngSubmit)="onTeacherFormSubmit(teacherForm)" novalidate>
+    <table id="table-prop">
+      <tr>
+        <th>First Name</th>
+        <td>
+          <div class="form-group">
+            <div class="col-sm-12">
+              <input type="text" formControlName="fname" id="fname" class="form-control">
+            </div>
+          </div>
+        </td>
+        <td>
+          <div *ngIf="fname.invalid && fname.touched" class="col-sm-12 text-danger">
+            <div class="col-sm-12" *ngIf="fname.errors?.required">
+              First Name can't be blank
+            </div>
+            <div class="col-sm-12" *ngIf="fname.errors.minlength">
+              First Name must be at least 5 characters long.
+            </div>
+            <div class="col-sm-12" *ngIf="fname.errors.maxlength">
+              First Name can't be more then 10 characters long.
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <th>Last Name</th>
+        <td>
+          <div class="form-group">
+            <div class="col-sm-12">
+              <input type="text" formControlName="lname" id="lname" class="form-control">
+            </div>
+          </div>
+        </td>
+        <td>
+          <div *ngIf="lname.invalid && lname.touched" class="col-sm-12 text-danger">
+            <div class="col-sm-12" *ngIf="lname.errors?.required">
+              Last Name can't be blank
+            </div>
+            <div class="col-sm-12" *ngIf="lname.errors.minlength">
+              Last Name must be at least 5 characters long.
+            </div>
+            <div class="col-sm-12" *ngIf="lname.errors.maxlength">
+              Last Name can't be more then 10 characters long.
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <th>Post</th>
+        <td>
+          <div class="form-group">
+            <div class="col-sm-12">
+              <input type="text" formControlName="post" id="post" class="form-control">
+            </div>
+          </div>
+        </td>
+        <td>
+          <div *ngIf="post.invalid && post.touched" class="col-sm-12 text-danger">
+            <div class="col-sm-12" *ngIf="post.errors?.required">
+              Post required
+            </div>
+
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <th>Qualification</th>
+        <td>
+          <div class="form-group">
+            <div class="col-sm-12">
+              <select id="qual" formControlName="qual" ngModel>
+                <option value="" disabled>--Select--</option>
+                <option *ngFor="let g of quali" [ngValue]="g"> {{g}} </option>
+              </select>
+            </div>
+          </div>
+          <td>
+            <div *ngIf="qual.invalid && qual.touched" class="col-sm-12 text-danger">
+              <div class="col-sm-12" *ngIf="qual.errors?.required">
+                Qualification is required
+              </div>
+            </div>
+          </td>
+      </tr>
+    </table>
+    <button type="submit" class="btn btn-success" *ngIf="!teacherIdToUpdate" [disabled]="!teacherForm.valid">Create</button>
+    <button type="reset" class="btn btn-warning" *ngIf="!teacherIdToUpdate">Reset</button>
+    <button type="submit" class="btn btn-info" *ngIf="teacherIdToUpdate" [disabled]="!teacherForm.valid">Update</button>
+  </form>
+
+  <div *ngIf="statusCode; else processing">
+      <div class="message" *ngIf="statusCode === 201" [ngClass]="'success'">
+        Teacher added successfully.
+      </div>
+      <div class="message" *ngIf="statusCode === 409" [ngClass]="'success'">
+        Teacher  already exists.
+      </div>
+      <div class="message" *ngIf="statusCode === 200" [ngClass]="'success'">
+       Teacher updated successfully.
+      </div>
+      <div class="message" *ngIf="statusCode === 204" [ngClass]="'success'">
+      Teacher deleted successfully.
+      </div>
+      <div class="message" *ngIf="statusCode === 500" [ngClass]="'error'">
+        Internal Server Error.
+      </div>
+    </div>
+    <ng-template #processing>
+      <img *ngIf="requestProcessing" src="assets/images/loading.gif">
+    </ng-template>
+</div>
+
+<table id="table-prop">
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Post</th>
+    <th>Qualification</th>
+  </tr>
+  <tr *ngFor="let t of allTeacher" [class.selected]="t === selectedTeacher">
+    <td>{{t.id}}</td>
+    <td>{{t.fname}} {{t.lname}}</td>
+    <td>{{t.post}}</td>
+    <td>{{t.qual}}</td>
+    <td>
+        <button class="button" (click)="loadTeacherToEdit(t.id)" class="btn btn-info">Edit</button>
+      </td>
+      <td>
+        <button class="button" (click)="deleteTeacher(t.id)" class="btn btn-danger">Delete</button>
+      </td>
+  </tr>
+</table>

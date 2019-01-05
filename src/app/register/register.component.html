@@ -1,0 +1,161 @@
+<h2>User Registration Form </h2>
+
+<div>
+  <form [formGroup]="userForm" (ngSubmit)="onUserFormSubmit(userForm)">
+    <table id="table-prop">
+      <tr>
+        <th>First Name</th>
+        <td>
+          <div class="form-group">
+            <div class="col-sm-12">
+              <input type="text" formControlName="firstName" id="firstName" class="form-control">
+            </div>
+          </div>
+        </td>
+        <td>
+          <div *ngIf="firstName.invalid && firstName.touched" class="col-sm-12 text-danger">
+            <div class="col-sm-12" *ngIf="firstName.errors?.required">
+              First Name can't be blank
+            </div>
+            <div class="col-sm-12" *ngIf="firstName.errors.minlength">
+              First Name must be at least 5 characters long.
+            </div>
+            <div class="col-sm-12" *ngIf="firstName.errors.maxlength">
+              First Name can't be more then 10 characters long.
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <th>Last Name</th>
+        <td>
+          <div class="form-group">
+            <div class="col-sm-12">
+              <input type="text" formControlName="lastName" id="lastName" class="form-control">
+            </div>
+          </div>
+        </td>
+        <td>
+          <div *ngIf="lastName.invalid && lastName.touched" class="col-sm-12 text-danger">
+            <div class="col-sm-12" *ngIf="lastName.errors?.required">
+              Last Name can't be blank
+            </div>
+            <div class="col-sm-12" *ngIf="lastName.errors.minlength">
+              Last Name must be at least 5 characters long.
+            </div>
+            <div class="col-sm-12" *ngIf="lastName.errors.maxlength">
+              Last Name can't be more then 10 characters long.
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <th>Role</th>
+        <td>
+          <div class="form-group">
+            <div class="col-sm-12">
+              <select id="role" formControlName="role" ngModel>
+                <option value="" disabled>--Select--</option>
+                <option *ngFor="let g of roleList" [ngValue]="g"> {{g}} </option>
+              </select>
+            </div>
+          </div>
+          <td>
+            <div *ngIf="role.invalid && role.touched" class="col-sm-12 text-danger">
+              <div class="col-sm-12" *ngIf="role.errors?.required">
+                Role is required
+              </div>
+            </div>
+          </td>
+      </tr>
+      <tr>
+        <th>User Name</th>
+        <td>
+          <div class="form-group">
+            <div class="col-sm-12">
+              <input type="text" formControlName="userName" id="userName" class="form-control">
+            </div>
+          </div>
+          <td>
+            <div *ngIf="userName.invalid && userName.touched" class="col-sm-12 text-danger">
+              <div class="col-sm-12" *ngIf="userName.errors?.required">
+                User Name can't be blank
+              </div>
+              <div class="col-sm-12" *ngIf="userName.errors.minlength">
+                User Name must be at least 5 characters long.
+              </div>
+              <div class="col-sm-12" *ngIf="userName.errors.maxlength">
+                User Name can't be more then 10 characters long.
+              </div>
+            </div>
+          </td>
+      </tr>
+      <tr>
+        <th>Password</th>
+        <td>
+          <div class="form-group">
+            <div class="col-sm-12">
+              <input type="password" formControlName="password" id="password" class="form-control">
+            </div>
+          </div>
+          <td>
+            <div *ngIf="password.invalid && password.touched" class="col-sm-12 text-danger">
+              <div class="col-sm-12" *ngIf="password.errors?.required">
+                Password can't be blank
+              </div>
+              <div class="col-sm-12" *ngIf="password.errors.minlength">
+                Password must be at least 5 characters long.
+              </div>
+              <div class="col-sm-12" *ngIf="password.errors.maxlength">
+                Password can't be more then 10 characters long.
+              </div>
+            </div>
+          </td>
+      </tr>
+    </table>
+    <button type="submit" class="btn btn-success" *ngIf="!userIdToUpdate" [disabled]="!userForm.valid">Create</button>
+    <button type="reset" class="btn btn-warning" *ngIf="!userIdToUpdate">Reset</button>
+    <button type="submit" class="btn btn-info" *ngIf="userIdToUpdate" [disabled]="!userForm.valid">Update</button>
+
+  </form>
+  <div *ngIf="statusCode; else processing">
+    <div *ngIf="statusCode === 201" [ngClass]="'success'">
+      User {{userNameToDisplay}} added successfully.
+    </div>
+    <div *ngIf="statusCode === 409" [ngClass]="'success'">
+      User {{userNameToDisplay}} already exists.
+    </div>
+    <div *ngIf="statusCode === 200" [ngClass]="'success'">
+      User {{userNameToDisplay}} updated successfully.
+    </div>
+    <div *ngIf="statusCode === 204" [ngClass]="'success'">
+      User {{userNameToDisplay}} deleted successfully.
+    </div>
+    <div *ngIf="statusCode === 500" [ngClass]="'error'">
+      Internal Server Error.
+    </div>
+  </div>
+  <ng-template #processing>
+    <img *ngIf="requestProcessing" src="assets/images/loading.gif">
+  </ng-template>
+</div>
+<table id="table-prop">
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>User Name</th>
+    <th>Role</th>
+  </tr>
+  <tr *ngFor="let user of allUser" [class.selected]="user === selectedUser">
+    <td>{{user.id}}</td>
+    <td>{{user.firstName}} {{user.lastName}}</td>
+    <td>{{user.userName}}</td>
+    <td>{{user.role}}</td>
+    <td>
+      <button class="button" (click)="loadUserToEdit(user.id)" class="btn btn-info">Edit</button>
+    </td>
+    <td>
+      <button class="button" (click)="deleteUser(user.id,user.userName)" class="btn btn-danger">Delete</button>
+    </td>
+  </tr>
+</table>

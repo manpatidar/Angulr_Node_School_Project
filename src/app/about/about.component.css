@@ -1,0 +1,7 @@
+#text-container {
+    width: 712px;
+    height: 640px;
+    overflow-y: scroll;
+    overflow-x: scroll;
+
+}

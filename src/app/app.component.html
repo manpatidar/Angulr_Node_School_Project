@@ -1,0 +1,132 @@
+<div class="body-container">
+  <div class="top-container">
+    <div class="left-logo-container">
+      <a href="#">
+        <img src="\assets\images\HomeLogo.jpg" height="100px" width="80px">
+      </a>
+    </div>
+    <div class="logotext-container">
+      <p id="site-title">
+        <a href="#">सरस्वती शिशु मन्दिर, कलालिया</a>
+      </p>
+    </div>
+    <div class="right-logo-container">
+      <a href="#">
+        <img src="\assets\images\img0108.png" height="100px" width="80px">
+      </a>
+    </div>
+  </div>
+
+  <div class="menu-container">
+
+    <nav>
+      <ul class="nav">
+        <li>
+          <a routerLink="/home" routerLinkActive="active">मुख्य पृष्ठ</a>
+        </li>
+        <li>
+          <a routerLink="/school" routerLinkActive="active">विद्यालय</a>
+        </li>
+        <li>
+          <a routerLink="/department" routerLinkActive="active">विभाग</a>
+        </li>
+        <li>
+          <a routerLink="/about" routerLinkActive="active">सन्देश</a>
+        </li>
+        <li>
+          <a routerLink="/feestructure" routerLinkActive="active">शुल्क संरचना</a>
+        </li>
+        <li>
+          <a routerLink="/program" routerLinkActive="active">कार्यक्रम</a>
+        </li>
+        <li>
+          <a routerLink="/management" routerLinkActive="active">प्रबंधन समिति</a>
+        </li>
+        <li>
+          <a routerLink="/teacher" routerLinkActive="active">शिक्षक</a>
+        </li>
+        <li>
+          <a routerLink="#" routerLinkActive="active">विद्यालय समिति</a>
+        </li>
+        <li>
+          <a routerLink="/studentlist" routerLinkActive="active">छात्र/छात्रा</a>
+        </li>
+        <li>
+          <a routerLink="/gallery" routerLinkActive="active">गैलरी</a>
+        </li>
+        <li>
+          <a routerLink="/contact" routerLinkActive="active">संपर्क</a>
+        </li>
+        <li >
+          <form action="www.google.com" method="post">
+            <input class="form-control input-sm" type="text" placeholder="Search" name="search">
+            <!-- <input type="submit" class="button" class="btn btn-sm" class="glyphicon glyphicon-search"> -->
+          </form>
+          </li>
+         
+  
+      </ul>
+    </nav>
+  </div>
+
+  <div class="main-container">
+    <div class="main-content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+
+  <div class="bottom-container">
+    <div id="left_footer">
+      <figure class="center">
+        <img class="btmspace-15" src="\assets\images\worldmap.png" alt="">
+        <figcaption>
+          <a href="https://www.google.co.in/maps/place/Kalaliya,+Madhya+Pradesh/@23.7449582,75.1359056,15z/data=!4m5!3m4!1s0x396419cdfd2684ed:0x6ad747cee7c8a305!8m2!3d23.742896!4d75.1414037"
+            target="_blank">हमे गूगल मेप पर खोजे &raquo;</a>
+        </figcaption>
+      </figure>
+    </div>
+    <div id="inner_footer">
+      <address>
+        <br /> सरस्वती विद्या प्रतिष्ठान
+        <br> भोपाल
+        <br> (मध्य प्रदेश )
+        <br> 457336
+        <br>
+        <br>
+        <i></i> 07414-264256
+        <br>
+        <i></i>
+        <a href="https://mail.google.com/mail/u/0/#inbox?compose=163341821671881e" target="_blank">manohar.ptdr@gmail.com</a>
+      </address>
+    </div>
+    <div id="right_footer">
+      <p>हमारे साथ जुड़े रहिये </p>
+
+      <form class="clear" method="post" action="#">
+        <fieldset>
+          <legend>Subscribe To Our Newsletter:</legend>
+          <input type="text" value="" placeholder="Enter Email Here&hellip;">
+          <button class="fa fa-sign-in" type="submit" title="Sign Up">
+            <em>Sign Up</em>
+          </button>
+        </fieldset>
+      </form>
+      <br />
+
+      <h6 style="text-align:right;">Developed by Manohar Patidar</h6>
+    </div>
+
+  </div>
+  <!--<div class="last-container">
+
+     <button *ngIf="isUser"><a routerLink="/login">Login</a></button>
+    <button *ngIf="!isUser" (click)="logout()">Logout</button>
+    <button>
+      <a routerLink="/result">वार्षिक परिणाम</a>
+    </button>
+    <button>
+      <a routerLink="/contact">संपर्क</a>
+    </button>
+ 
+  </div>-->
+</div>

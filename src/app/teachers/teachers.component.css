@@ -1,0 +1,33 @@
+#text-container {
+    width: 712px;
+    height: 640px;
+    overflow-y: scroll;
+    overflow-x: scroll;
+}
+
+#table-prop {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#table-prop td, #table-prop th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#table-prop tr:nth-child(even){background-color: #f2f2f2;}
+
+#table-prop tr:hover {background-color: #ddd;}
+
+#table-prop th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+}
+th, td {
+    padding: 15px;
+    text-align: left;
+}

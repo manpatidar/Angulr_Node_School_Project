@@ -1,0 +1,12 @@
+#text-container {
+    width: 712px;
+    height: inherit;
+    overflow-y: scroll;
+    overflow-x: scroll;
+    scroll-behavior: auto;
+    -ms-overflow-style: none;
+
+}
+.text-align{
+    align-content: center;
+}

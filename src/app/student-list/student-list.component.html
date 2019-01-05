@@ -1,0 +1,21 @@
+<div>
+        <label>Class List: </label>
+            <select name="clas" required (change)="onSelect($event.target.value)" [(ngModel)]="student">
+                <option value="">Select Class</option>
+                <option *ngFor="let cls of classes" [value]="cls">{{ cls }}</option>
+            </select>
+            
+</div>
+<div *ngIf="available">
+    <div >
+            <h2><p>List of {{classN}} class students</p></h2>
+    <table id="table-prop">
+        <tr>
+            <th>Serial</th><th>Name</th><th>Father's Name</th>
+        </tr>
+        <tr *ngFor="let std of student ;let i = index">
+            <td>{{std.id}}</td><td>{{std.fname}} {{std.lname}}</td><td>{{std.faname}}</td>
+        </tr>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,74 @@
+<div>
+    <strong>विद्यालय प्रबंध समिति विवरण</strong>
+    <br />
+    <table id="table-prop">
+      <tr>
+        <th>क्रमांक</th><th>नाम</th><th> पता</th><th>फ़ोन नंबर</th> 
+      </tr>
+      <tr *ngFor="let mem of allMember;let i = index">
+        <td>{{i}}</td>
+        <td>श्री {{mem.fname}} {{mem.lname}}</td>
+        <td>{{mem.add}}</td>
+        <td>+91 {{mem.phone}}</td>
+      </tr>
+    </table>
+</div>
+
+<!-- <div id="table_align">
+  <div>
+  <strong>विद्यालय प्रबंध समिति विवरण</strong><br />
+  <table width="570" border="1" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="282" valign="top" class="spacer"><br /> (1)
+        श्री बसंतीलाल जैन<br /> 101 अन्नपूर्णा मंदिर इंदौर <br />
+        मोबा. +91 94251-11267<br /> <br /></td>
+      <td width="282" valign="top" class="spacer"><br />
+        (7)श्री ओमप्रकाश पाटीदार<br /> कलालिया रतलाम (म. प्र.) <br />
+
+        मोबा. +91 98276-31990 <br /></td>
+    </tr>
+    <tr>
+      <td valign="top" class="spacer"><br /> (2) श्री बद्रीलाल
+        पाटीदार <br /> कलालिया रतलाम (म. प्र.) <br /> मोबा. +91
+        93011-00275<br /> <br /></td>
+      <td valign="top" class="spacer"><br /> (8) श्री बाबूलाल
+        पोरवाल <br /> कलालिया रतलाम (म. प्र.) <br /> मोबा. +91
+        98260-61768</td>
+    </tr>
+    <tr>
+      <td valign="top" class="spacer"><br /> (3) श्री राजू
+        सुनारिया <br /> कलालिया रतलाम (म. प्र.) <br /> मोबा. +91
+        93004-88190 <br /> <br /></td>
+      <td valign="top" class="spacer"><br /> (9) श्री ईश्वरलाल
+        पाटीदार <br /> कलालिया रतलाम (म. प्र.) <br /> मोबा. +91
+        94253-38583</td>
+    </tr>
+    <tr>
+      <td valign="top" class="spacer"><br /> (4) श्री हरीश
+        पाटीदार <br /> कलालिया रतलाम (म. प्र.) <br /> मोबा. +91
+        94251-11267<br /> <br /></td>
+      <td valign="top" class="spacer"><br /> (10) श्री महेश
+        पाटीदार <br /> कलालिया रतलाम (म. प्र.) <br /> मोबा. +91
+        96440-01222<br /></td>
+    </tr>
+    <tr>
+      <td valign="top" class="spacer"><br /> (5) श्री निरंजन
+        पाटीदार <br /> कलालिया रतलाम (म. प्र.) <br /> मोबा.
+        0751-2239610<br /></td>
+      <td valign="top" class="spacer"><br /> (11) श्री विनोद
+        पांडे<br /> कलालिया रतलाम (म. प्र.) <br />मोबा. +91
+        96440-01221,
+
+        <p>&nbsp;</p></td>
+    </tr>
+    <tr>
+      <td valign="top" class="spacer"><br /> (6) श्री चिम्मन
+        सिंह जी <br /> कलालिया रतलाम (म. प्र.)<br /> मोबा.
+        +9194251-09847<br />
+        <p>
+          <br /></td>
+      <td>&nbsp;</td>
+    </tr>
+  </table>
+</div>
+</div> -->

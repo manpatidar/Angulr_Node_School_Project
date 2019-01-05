@@ -1,0 +1,271 @@
+<h2>Student Details</h2>
+<div class="upload-file">
+<input type="file" class="file-input" (change)="incomingfile($event)" accept=".xlsx" name="fileName">
+<button type="button" class="btn btn-info" (click)="Upload()" [disabled]="!isFileSelected">Upload</button>
+</div>
+<br />
+
+<!-- Student -->
+<button class="btn btn-info" (click)="changeStatus()">Add Student</button>
+<select [(ngModel)]="selectedStudent.id" (change)="onSelect(selectedStudent.id)">
+  <option value="0">--Select--</option>
+  <option *ngFor="let std of allStudents" value={{std.id}}>{{std.fname}}</option>
+</select>
+<button class="btn btn-info" (click)="listAllStudent()" [(ngModel)]="allStudents">Show List</button>
+<button class="btn btn-danger" (click)="deleteAllStudent()">Delete All Student</button>
+<!-- Result 
+<button class="btn btn-info" (click)="changeStatus()">Add Result</button>
+<select [(ngModel)]="selectedStudent.id" (change)="onSelect(selectedStudent.id)">
+  <option value="0">--Select--</option>
+  <option *ngFor="let std of allStudents" value={{std.id}}>{{std.fname}}</option>
+</select>
+<button class="btn btn-info" (click)="listAllStudent()" [(ngModel)]="allStudents">Show List</button>
+<button class="btn btn-danger" (click)="deleteAllStudent()">Delete All Student</button>
+-->
+
+
+<h3 *ngIf="studentIdToUpdate"> Update Student for Id: {{studentIdToUpdate}}</h3>
+<h3 *ngIf="isAdd">Create new Student Record</h3>
+<h3 *ngIf="showList">Students List</h3>
+
+<div *ngIf="isAdd || isEdit">
+  <form [formGroup]="studentForm" (ngSubmit)="onStudentFormSubmit(studentForm)">
+    <table  id="table-prop">
+      <tr>
+        <th>Roll Number </th>
+        <td>
+          <div class="form-group">
+            <div class="col-sm-12">
+              <input type="number" formControlName="roll" id="roll" class="form-control">
+              <div *ngIf="roll.invalid && roll.touched" class="col-sm-3 text-danger">
+                <div class="col-sm-3" *ngIf="roll.errors?.required">
+                  Roll number can't be blank
+                </div>
+                <div class="col-sm-3" *ngIf="roll.errors.minlength">
+                  Roll number must be at least 5 characters long.
+                </div>
+                <div class="col-sm-3" *ngIf="roll.errors.maxlength">
+                  Roll number cannot be more than 10000000.
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <th>First Name </th>
+        <td>
+          <div class="form-group">
+            <div class="col-sm-12">
+
+              <input type="text" formControlName="fname" id="fname" class="form-control">
+              <div *ngIf="fname.invalid && fname.touched" class="col-sm-3 text-danger">
+                <div  class="col-sm-3" *ngIf="fname.errors?.required">
+                  First Name number can't be blank
+                </div>
+                <div  class="col-sm-3" *ngIf="fname.errors?.minlength">
+                  First Name must be at least 3 characters long.
+                </div>
+                <div  class="col-sm-3" *ngIf="fname.errors?.maxlength">
+                  First Name can not be more then 10 characters long.
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <th>Last Name </th>
+        <td>
+          <div class="form-group">
+            <div class="col-sm-12">
+
+              <input type="text" formControlName="lname" id="lname" class="form-control">
+              <div *ngIf="lname.invalid && lname.touched" class="col-sm-3 text-danger">
+                <div  class="col-sm-3" *ngIf="lname.errors?.required">
+                  Last Name number can't be blank
+                </div>
+                <div  class="col-sm-3" *ngIf="lname.errors?.minlength">
+                  Last Name must be at least 3 characters long.
+                </div>
+                <div class="col-sm-3"  *ngIf="lname.errors?.maxlength">
+                  Last Name can not be more then 10 characters long.
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <th>Father's Name </th>
+        <td>
+          <div class="form-group">
+            <div class="col-sm-12">
+
+              <input type="text" formControlName="faname" id="faname" class="form-control">
+              <div *ngIf="faname.invalid && faname.touched" class="col-sm-3 text-danger">
+                <div class="col-sm-3"  *ngIf="faname.errors?.required">
+                  Father Name number can't be blank
+                </div>
+                <div class="col-sm-3"  *ngIf="faname.errors?.minlength">
+                  Father Name must be at least 3 characters long.
+                </div>
+                <div  class="col-sm-3" *ngIf="faname.errors?.maxlength">
+                  Father Name can not be more then 20 characters long.
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <th>Mother's Name </th>
+        <td>
+          <div class="form-group">
+            <div class="col-sm-12">
+
+              <input type="text" formControlName="mname" id="mname" class="form-control">
+              <div *ngIf="mname.invalid && mname.touched" class="col-sm-3 text-danger">
+                <div class="col-sm-3"  *ngIf="mname.errors?.required">
+                  Mother Name number can't be blank
+                </div>
+                <div class="col-sm-3"  *ngIf="mname.errors?.minlength">
+                  Mother Name must be at least 3 characters long.
+                </div>
+                <div  class="col-sm-3" *ngIf="mname.errors?.maxlength">
+                  Mother Name can not be more then 20 characters long.
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <th>Gender</th>
+        <td>
+          <div class="form-group">
+            <div class="col-sm-12">
+              <select id="gender" formControlName="gender" ngModel>
+                <option value="" disabled>--Select--</option>
+                <option *ngFor="let g of genderList" [ngValue]="g"> {{g}} </option>
+              </select>
+              <div class="col-sm-3" *ngIf="gender.invalid && gender.touched" class="col-sm-3 text-danger">
+                <div  class="col-sm-3" *ngIf="gender.errors?.required">
+                  Gender is required
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <th>Class</th>
+        <td>
+          <div class="form-group">
+            <div class="col-sm-12">
+              <select formControlName="clas" id="clas" name="clas" ngModel>
+                <option value="" disabled>--Select--</option>
+                <option *ngFor="let cls of classes" [ngValue]="cls">{{ cls }}</option>
+              </select>
+              <div  class="col-sm-3" *ngIf="clas.invalid && clas.touched" class="col-sm-3 text-danger">
+                <div  class="col-sm-3" *ngIf="clas.errors?.required">
+                  Class is required
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <th>Address </th>
+        <td>
+          <div class="form-group">
+            <div class="col-sm-12">
+              <input type="text" formControlName="address" id="address" class="form-control">
+              <div *ngIf="address.invalid && address.touched" class="col-sm-3 text-danger">
+                <div class="col-sm-3"  *ngIf="address.errors?.required">
+                  Address can't be blank
+                </div>
+                <div class="col-sm-3"  *ngIf="address.errors?.minlength">
+                  Address must be at least 3 characters long.
+                </div>
+                <div  class="col-sm-3" *ngIf="address.errors?.maxlength">
+                  Address can not be more then 20 characters long.
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <th>Aadhar number</th>
+        <td>
+          <div class="form-group">
+            <div class="col-sm-12">
+              <input type="text" formControlName="aadhar" id="aadhar" class="form-control">
+              <div *ngIf="aadhar.invalid && aadhar.touched" class="col-sm-3 text-danger">
+                <div  class="col-sm-3" *ngIf="aadhar.errors?.required">
+                  Aadhar is required
+                </div>
+                <div class="col-sm-3"  *ngIf="aadhar.errors?.minlength">
+                  aadhar must be at least 12 characters long.
+                </div>
+                <div  class="col-sm-3" *ngIf="aadhar.errors?.maxlength">
+                  Aadhar must be 12 digit long.
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <th>Phone</th>
+        <td>
+          <div class="form-group">
+            <div class="col-sm-12">
+              <input type="number" formControlName="phone" id="english">
+              <div *ngIf="phone.invalid && phone.touched" class="col-sm-3 text-danger">
+                <div class="col-sm-3"  *ngIf="phone.errors?.required">
+                  phone is required
+                </div>
+                <div class="col-sm-3"  *ngIf="phone.errors?.minlength">
+                  phone must be at least 10 digit long.
+                </div>
+                <div  class="col-sm-3" *ngIf="phone.errors?.maxlength">
+                  phone must be at 10 digit.
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+    <button *ngIf="!studentIdToUpdate" type="submit" class="btn btn-success" [disabled]="!studentForm.valid">Create</button>
+    <button *ngIf="!studentIdToUpdate" type="reset" class="btn btn-warning">Cancel</button>
+    <button *ngIf="studentIdToUpdate">Update</button>
+    <button (click)="deleteStudent(studentIdToUpdate)" class="btn btn-primary" *ngIf="studentIdToUpdate">Delete</button>
+
+  </form>
+  <ng-template #processing>
+    <img *ngIf="requestProcessing" src="assets/images/loading.gif">
+  </ng-template>
+  
+</div>
+<h4 *ngIf="errFlg">
+  <p>{{statusMessage}}</p>
+</h4>
+<table *ngIf="showList" id="table-prop">
+  <tr>
+    <th>Roll Number</th>
+    <th>Name</th>
+    <th>Father's Name</th>
+    <th>Class</th>
+  </tr>
+  <tr *ngFor="let std of allStudents">
+    <td>{{std.roll}}</td>
+    <td>{{std.fname}} {{std.lname}}</td>
+    <td>{{std.faname}}</td>
+    <td>{{std.clas}}</td>
+  </tr>
+</table>

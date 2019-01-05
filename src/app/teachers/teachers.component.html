@@ -1,0 +1,15 @@
+<div>
+    <strong>Teaching Staff List - ( 2017-18 )</strong>
+    <br />
+<table  id="table-prop">
+    <tr>
+        <th>S.NO.</th><th>Name of Teacher</th><th>Post</th><th>Qualification</th>
+    </tr>
+    <tr *ngFor = "let teacher of allTeacher;let i = index">
+        <td> {{i}}</td>
+        <td>{{teacher.fname}} {{teacher.lname}}</td>
+        <td>{{teacher.post}}</td>
+        <td>{{teacher.qual}}</td>
+    </tr>
+</table>
+</div>

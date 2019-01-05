@@ -1,0 +1,138 @@
+<h2>
+  Member Details</h2>
+
+
+<div>
+  <form [formGroup]="memberForm" (ngSubmit)="onMemberFormSubmit(memberForm)">
+    <table id="table-prop">
+
+      <tr>
+        <th>First Name</th>
+        <td>
+          <div class="form-group">
+            <div class="col-sm-12">
+              <input type="text" formControlName="fname" id="fname" class="form-control">
+            </div>
+          </div>
+        </td>
+        <td>
+          <div *ngIf="fname.invalid && fname.touched" class="col-sm-12 text-danger">
+            <div class="col-sm-12" *ngIf="fname.errors?.required">
+              First Name can't be blank
+            </div>
+            <div class="col-sm-12" *ngIf="fname.errors.minlength">
+              First Name must be at least 5 characters long.
+            </div>
+            <div class="col-sm-12" *ngIf="fname.errors.maxlength">
+              First Name can't be more then 10 characters long.
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <th>Last Name</th>
+        <td>
+          <div class="form-group">
+            <div class="col-sm-12">
+              <input type="text" formControlName="lname" id="lname" class="form-control">
+            </div>
+          </div>
+        </td>
+        <td>
+          <div *ngIf="lname.invalid && lname.touched" class="col-sm-12 text-danger">
+            <div class="col-sm-12" *ngIf="lname.errors?.required">
+              Last Name can't be blank
+            </div>
+            <div class="col-sm-12" *ngIf="lname.errors.minlength">
+              Last Name must be at least 5 characters long.
+            </div>
+            <div class="col-sm-12" *ngIf="lname.errors.maxlength">
+              Last Name can't be more then 10 characters long.
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <th>Address</th>
+        <td>
+          <div class="form-group">
+            <div class="col-sm-12">
+              <input type="text" formControlName="add" id="add" class="form-control">
+            </div>
+          </div>
+        </td>
+        <td>
+          <div *ngIf="add.invalid && add.touched" class="col-sm-12 text-danger">
+            <div class="col-sm-12" *ngIf="add.errors?.required">
+              Address is required
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <th>Phone Number</th>
+        <td>
+          <div class="form-group">
+            <div class="col-sm-12">
+              <input type="number" formControlName="phone" id="phone" minlength="10">
+            </div>
+          </div>
+        </td>
+        <td>
+          <div *ngIf="phone.invalid && phone.touched" class="col-sm-12 text-danger">
+            <div class="col-sm-12" *ngIf="phone.errors?.required">
+              Phone Number can't be blank
+            </div>
+            <div class="col-sm-12" *ngIf="phone.errors.minlength">
+              Phone Number must be 10 digit long.
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+    <button type="submit" class="btn btn-success" *ngIf="!memberIdToUpdate" [disabled]="!memberForm.valid">Create</button>
+    <button type="reset" class="btn btn-warning" *ngIf="!memberIdToUpdate">Reset</button>
+    <button type="submit" class="btn btn-info" *ngIf="memberIdToUpdate" [disabled]="!memberForm.valid">Update</button>
+  </form>
+  <div *ngIf="statusCode; else processing">
+    <div class="message" *ngIf="statusCode === 201" [ngClass]="'success'">
+      Member added successfully.
+    </div>
+    <div class="message" *ngIf="statusCode === 409" [ngClass]="'success'">
+      Member already exists.
+    </div>
+    <div class="message" *ngIf="statusCode === 200" [ngClass]="'success'">
+      Member updated successfully.
+    </div>
+    <div class="message" *ngIf="statusCode === 204" [ngClass]="'success'">
+      Member deleted successfully.
+    </div>
+    <div class="message" *ngIf="statusCode === 500" [ngClass]="'error'">
+      Internal Server Error.
+    </div>
+  </div>
+  <ng-template #processing>
+    <img *ngIf="requestProcessing" src="assets/images/loading.gif">
+  </ng-template>
+</div>
+
+<table id="table-prop">
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Address</th>
+    <th>Phone Number</th>
+  </tr>
+  <tr *ngFor="let t of allMember" [class.selected]="t === selectedMember">
+    <td>{{t.id}}</td>
+    <td>{{t.fname}} {{t.lname}}</td>
+    <td>{{t.add}}</td>
+    <td>{{t.phone}}</td>
+    <td>
+      <button class="button" (click)="loadMemberToEdit(t.id)" class="btn btn-info">Edit</button>
+    </td>
+    <td>
+      <button class="button" (click)="deleteMember(t.id)" class="btn btn-danger">Delete</button>
+    </td>
+  </tr>
+</table>

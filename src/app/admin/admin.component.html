@@ -1,0 +1,23 @@
+<!-- <div *ngIf="isVisible"> -->
+<div >
+    <label class="text-prop">Logged in as {{user}}</label>
+    <button class="col" id="logout">
+        <a (click)="logout()" href="#">Logout</a>
+    </button>
+</div>
+<div class="parent-prop" >
+    <button class="col-md-4" (click)="changeSection1()">Student Section</button>
+    <button class="col-md-4" (click)="changeSection2()">Teacher section</button>
+    <button class="col-md-4" (click)="changeSection3()">School Commitee scetion</button>
+</div>
+<br />
+<div *ngIf="stdSection">
+    <app-admin-student></app-admin-student>
+</div>
+<div *ngIf="tchSection">
+    <app-admin-teacher></app-admin-teacher>
+</div>
+<div *ngIf="commSection">
+    <app-admin-commitee></app-admin-commitee>
+</div>
+<!-- </div> -->
